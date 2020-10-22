@@ -13,7 +13,7 @@ public class SqlSessionTest extends MyTestCase {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		assertNotNull(sqlSession);
 	}
 
 }
