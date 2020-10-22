@@ -50,7 +50,7 @@ public class QnADAO implements BoardDAO {
 	@Override
 	public long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace+"getCount", pager);
 	}
 
 }

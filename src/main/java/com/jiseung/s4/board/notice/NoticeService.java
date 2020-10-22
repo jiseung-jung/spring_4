@@ -2,25 +2,23 @@ package com.jiseung.s4.board.notice;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import com.jiseung.s4.board.BoardDAO;
 import com.jiseung.s4.board.BoardDTO;
+import com.jiseung.s4.board.BoardService;
 import com.jiseung.s4.util.Pager;
 
-@Repository
-public class NoticeDAO implements BoardDAO {
+@Service
+public class NoticeService implements BoardService{
 	
 	@Autowired
-	private SqlSession sqlSession;
-	private final String namespace="com.jiseung.s4.board.notice.NoticeDAO.";
+	private NoticeDAO noticeDAO;
 
 	@Override
 	public int setInsert(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace+"setInsert", boardDTO);
+		return noticeDAO.setInsert(boardDTO);
 	}
 
 	@Override
@@ -37,20 +35,16 @@ public class NoticeDAO implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(namespace+"getList", pager);
+		pager.makeRow();
+		pager.setTotalCount(noticeDAO.getCount(pager));
+		pager.makePage();
+		return noticeDAO.getList(pager);
 	}
 
 	@Override
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public long getCount(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(namespace+"getCount", pager);
 	}
 	
 	
