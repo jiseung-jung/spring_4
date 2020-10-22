@@ -9,6 +9,7 @@
   	<typeAlias type="com.jiseung.s4.board.notice.NoticeDTO" alias="NoticeDTO"/>
   	<typeAlias type="com.jiseung.s4.board.qna.QnADTO" alias="QnADTO"/>
   	<typeAlias type="com.jiseung.s4.util.Pager" alias="Pager"/>
+  	<typeAlias type="com.jiseung.s4.board.BoardDTO" alias="BoardDTO"/>
   	<typeAlias type="java.lang.Long" alias="Long"/>
   </typeAliases>
   </configuration>

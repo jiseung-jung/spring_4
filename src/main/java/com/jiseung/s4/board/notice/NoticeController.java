@@ -65,5 +65,21 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+
+	//----------------------------------------------------------------------------------------
+	
+	@GetMapping("noticeSelect")
+	public ModelAndView getOne(BoardDTO boardDTO) throws Exception{
+		BoardDTO oneList = noticeService.getOne(boardDTO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("oneList", oneList);
+		mv.addObject("board", "notice");
+		mv.setViewName("board/boardSelect");
+		
+		return mv;
+	}
 
 }

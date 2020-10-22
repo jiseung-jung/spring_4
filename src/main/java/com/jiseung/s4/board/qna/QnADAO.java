@@ -44,7 +44,7 @@ public class QnADAO implements BoardDAO {
 	@Override
 	public BoardDTO getOne(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace+"getOne", boardDTO);
 	}
 
 	@Override
@@ -52,5 +52,14 @@ public class QnADAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"getCount", pager);
 	}
+	
+	public int setReply(BoardDTO boardDTO) throws Exception {
+		return sqlSession.insert(namespace+"setReply", boardDTO);
+	}
+	
+	public int setReplyUpdate(BoardDTO boardDTO) throws Exception{
+		return sqlSession.update(namespace+"setReplyUpdate", boardDTO);
+	}
+	
 
 }

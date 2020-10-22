@@ -63,5 +63,52 @@ public class QnAController {
 		
 		return mv;
 	}
+	
+	
+	//----------------------------------------------------------------------------------------
+	
+	@GetMapping("qnaSelect")
+	public ModelAndView getOne(BoardDTO boardDTO) throws Exception{
+		BoardDTO oneList = qnaService.getOne(boardDTO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("oneList", oneList);
+		mv.addObject("board", "qna");
+		mv.setViewName("board/boardSelect");
+		
+		return mv;
+	}
+	
+	
+	//----------------------------------------------------------------------------------------
+	
+	@PostMapping("qnaReply")
+	public ModelAndView setReply(BoardDTO boardDTO) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		int result = qnaService.setReply(boardDTO);
+		
+		String msg = "Reply Write Fail";
+		
+		if(result>0) {
+			msg = "Reply Write Seccess";
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("path", "./qnaList");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("qnaReply")
+	public ModelAndView setReply()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/boardReply");
+		mv.addObject("board", "qna");
+		return mv;
+	}
 
 }
