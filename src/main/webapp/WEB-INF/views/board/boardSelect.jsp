@@ -19,10 +19,13 @@
   		<h3>Title : ${oneList.title}</h3>
   		<h3>Writer : ${oneList.writer}</h3>
   		<h3>Contents : ${oneList.contents}</h3>
+  		
+  		<c:if test="${member.id eq 'admin'}">
   		<input type="button" title="${oneList.num}" value="Delete" class="btn btn-default" id="del">
   		<input type="button" value="Update" class="btn btn-default" id="upd">
   		<c:if test="${board ne'notice'}">
   		<a href="./${board}Reply?num=${oneList.num}" class="btn btn-default">Reply</a></c:if>
+  		</c:if>
 </div>
 
 	<script type="text/javascript">

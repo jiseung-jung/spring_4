@@ -90,9 +90,20 @@
   	</c:if>
   </div>
   
- 
+  <c:choose>
+  <c:when test="${board eq 'notice'}">
+ 	 <c:if test="${not empty member and member.id eq 'admin'}">
+ 		 <a href="./${board}Write" class="btn btn-default">Write</a>
+ 	 </c:if>
+  </c:when>
   
-  <a href="./${board}Write" class="btn btn-default">Write</a>
+  <c:otherwise>
+  	 <c:if test="${not empty member}">
+ 	 	<a href="./${board}Write" class="btn btn-default">Write</a>
+ 	 </c:if>
+  </c:otherwise>
+  </c:choose>
+  
   
   <script type="text/javascript">
 		var kind = '${pager.kind}';

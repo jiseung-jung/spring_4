@@ -10,6 +10,8 @@
   	<typeAlias type="com.jiseung.s4.board.qna.QnADTO" alias="QnADTO"/>
   	<typeAlias type="com.jiseung.s4.util.Pager" alias="Pager"/>
   	<typeAlias type="com.jiseung.s4.board.BoardDTO" alias="BoardDTO"/>
+  	<typeAlias type="com.jiseung.s4.member.MemberDTO" alias="MemberDTO"/>
+  	<typeAlias type="com.jiseung.s4.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>
   	<typeAlias type="java.lang.Long" alias="Long"/>
   </typeAliases>
   </configuration>
