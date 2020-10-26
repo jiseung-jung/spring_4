@@ -20,4 +20,8 @@
     		insert into member values(mb.nextval, #{id}, #{pw}, #{name}, #{email})
     	</insert>
     	
+    	<select id="getId" resultType="MemberUserDTO" parameterType="MemberUserDTO">
+    		select * from member
+    	</select>
+    	
     </mapper>

@@ -21,6 +21,7 @@
     	<div class="form-group">
       		<label for="id">ID:</label>
       		<input type="text" class="form-control" id="id" placeholder="Enter ID" name="id">
+      		<div id="idResult"></div>
     	</div>
     
     	<div class="form-group">
