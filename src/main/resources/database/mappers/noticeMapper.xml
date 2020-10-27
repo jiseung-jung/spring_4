@@ -7,7 +7,7 @@
     	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
     		select * from
 			(select rownum as R, N.* from 
-			(select * from board where
+			(select * from notice where
 			<choose>
 				<when test="kind == 'tt'">
 					title
@@ -26,7 +26,7 @@
     	</select>
     	
     	<select id="getCount" resultType="Long" parameterType="Pager">
-    		select count(num) from board where
+    		select count(num) from notice where
     			<choose>
 				<when test="kind == 'tt'">
 					title
@@ -44,18 +44,18 @@
     	</select>
     	
     	<insert id="setInsert" parameterType="NoticeDTO">
-    		insert into board values(notice.nextval, #{title}, #{writer}, #{contents}, sysdate, 0)
+    		insert into notice values(notice_seq.nextval, #{title}, #{writer}, #{contents}, sysdate, 0)
     	</insert>
     	
     	<select id="getOne" parameterType="NoticeDTO" resultType="NoticeDTO">
-    		select * from board where num = #{num}
+    		select * from notice where num = #{num}
     	</select>
     	
     	<delete id="setDelete" parameterType="NoticeDTO">
-    		delete board where num = #{num}
+    		delete notice where num = #{num}
     	</delete>
     	
     	<update id="setUpdate" parameterType="NoticeDTO">
-    		update board set title=#{title}, contents=#{contents} where num=#{num}
+    		update notice set title=#{title}, contents=#{contents} where num=#{num}
     	</update>
     </mapper>
