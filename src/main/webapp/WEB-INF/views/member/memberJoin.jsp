@@ -8,6 +8,16 @@
 <title>Insert title here</title>
 <c:import url="../template/bootStrap.jsp"></c:import>
 
+<style type="text/css">
+	.idCheck0{
+		color: blue;
+	}
+	
+	.idCheck1{
+		color: red;
+	}
+</style>
+
 </head>
 <body>
 
@@ -17,7 +27,7 @@
 	<div class="container">
 		<h3>Member Join Page</h3>
 		
-	<form action="./memberJoin" method="post">
+	<form action="./memberJoin" method="post" id="frm">
     	<div class="form-group">
       		<label for="id">ID:</label>
       		<input type="text" class="form-control" id="id" placeholder="Enter ID" name="id">
@@ -32,7 +42,9 @@
     	<div class="form-group">
       		<label for="pw">Password:</label>
       		<input type="password" class="form-control" id="pw1" placeholder="Enter password" name="pw1">
+      		<div id="pwResult"></div>
     	</div>
+    	
     
     	<div class="form-group">
       		<label for="name">Name:</label>
@@ -44,9 +56,77 @@
       		<input type="text" class="form-control" id="email" placeholder="Enter Email" name="email">
     	</div>
     
-    <button type="submit" class="btn btn-default">Join</button>
+     <input type="button" value="Join" class="btn btn-default" id="join">
   </form>
 	</div>
+	
+	<script type="text/javascript">
+	var idCheck=false;
+	var pwCheck=false;
+	
+	$("#join").click(function() {
+		if(idCheck && pwCheck){
+			//중복체크했고, 사용가능한 ID
+			alert("OK");
+		}else {
+			//중복체크를 안했거나, 사용불가능한 ID
+			alert("No");
+		}
+		//$("#frm").submit();
+	});
+	
+	
+		$("#id").blur(function() {
+			var id = $(this).val();
+			
+			if(id != ''){
+			$.get("./memberIdCheck?id="+id, function(data){
+				//a 사용가능, b 사용불가
+				//true 사용가능, false 사용불가
+				//0 사용가능, 1 사용불가
+				data=data.trim();
+				var str = "중복된 ID 입니다.";
+				idCheck=false;
+				$("#idResult").removeClass("#idCheck0").addClass("idCheck1");
+				
+				if(data==0){
+					str = "사용 가능한 ID 입니다."
+					$("#idResult").removeClass("idCheck1").addClass("idCheck0");
+					idCheck=true;
+				}
+				$("#idResult").html(str);
+			});
+			
+			}else{
+				$("#idResult").html("ID는 필수항목 입니다.");
+				$("#idResult").removeClass("#idCheck0").addClass("idCheck1");
+			}
+			
+		});
+			
+	//-----------------------------------------------------------------------------------------
+	
+	$("#pw1").blur(function() {
+		var pw = $("#pw").val();
+		var pw1 = $(this).val();
+		pwCheck=false;
+		
+		if(pw1==''){
+			$("#pwResult").html("패스워드를 입력하세요.");
+			$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+		}else if(pw == pw1){
+			$("#pwResult").html("패스워드가 일치합니다.");
+			$("#pwResult").removeClass("idCheck1").addClass("idCheck0");
+			pwCheck=true;
+		}else{
+			$("#pwResult").html("패스워드가 일치하지 않습니다.");
+			$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+		}
+		
+	});
+			
+		
+	</script>
 
 </body>
 </html>

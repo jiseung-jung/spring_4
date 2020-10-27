@@ -146,6 +146,26 @@ public class MemberUserController {
 	}
 	
 	
+	//-----------------------------------------------------------------------------------------
+	//idCheck
+	
+	@GetMapping("memberIdCheck")
+	public ModelAndView gerMemberIdCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberUserService.getMemberIdCheck(memberDTO);
+		
+		int result = 1; //중복
+		if(memberDTO == null) {
+			result=0;
+		}
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	
+	
 	
 	
 	

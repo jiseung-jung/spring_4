@@ -35,6 +35,16 @@ public class MemberUserService implements MemberService {
 		// TODO Auto-generated method stub
 		return memberUserDAO.setMemberJoin(memberDTO);
 	}
+
+	@Override
+	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberUserDAO.getMemberIdCheck(memberDTO);
+	}
+	
+	
+	
+	
 	
 	
 	
