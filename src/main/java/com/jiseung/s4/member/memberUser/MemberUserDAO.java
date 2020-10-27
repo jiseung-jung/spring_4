@@ -35,7 +35,7 @@ public class MemberUserDAO implements MemberDAO {
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(namespace+"memberJoin", memberDTO);
+		return sqlSession.insert(namespace+"setMemberJoin", memberDTO);
 	}
 
 	@Override
