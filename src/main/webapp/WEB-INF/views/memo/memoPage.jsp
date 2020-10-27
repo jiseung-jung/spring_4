@@ -34,30 +34,61 @@
 			
 			
 			<hr>
-			<div id=result></div>
+			<div>
+				<table id="result" class="table table-hober">
+				
+				</table>
+			</div>
 			<hr>
-			<button class="btn btn-default">더보기</button>
+			<button class="btn btn-default" id="more">더보기</button>
 	</div>
 	
 	
 		<script type="text/javascript">
-		
+			var curPage=1;
 			getList();
 		
 			function getList() {
-				$.get("./memoList", function(data) {
-					$("#result").html(data);
+				
+				$.ajax({
+					url:"./memoList",
+					type: "GET",
+					data:{curPage:curPage},
+					success:function(data){
+						$("#result").append(data);
+					}
 				});
+				
+				//$.get("./memoList", function(data) {
+				//	$("#result").append(data);
+				//});
 			}
-			//--------------------------------------------
+	//----------------------------more-----------------------------
+	
+		$("#more").click(function() {
+			curPage++;
+			getList();
+		});
+			
+			
+	//-----------------------------------------------------------
 			
 			$("#result").on("click", ".del", function() {
 				var num = $(this).attr("title");	
-				$.post("./memoDelete",{num:num},function(result) {
-					result=result.trim();
-					alert(result);
-					
-					if(result=="Delete Success"){
+				
+				
+			//	$.post("./memoDelete",{num:num},function(result) {
+			//		result=result.trim();
+			//		alert(result);
+			
+				$.ajax({
+					url : "./memoDelete",
+					type : "POST",
+					data : {num:num},
+					success : function(result) {
+						alert(result)
+						$("#result").html('');
+						curPage=1;
 						getList();
 					}
 				});
@@ -68,16 +99,31 @@
 			$("#write").click(function() {
 				var writer = $("#writer").val();
 				var contents = $("#contents").val();
-				$.post("./memoWrite",{writer:writer, contents:contents},function(result) {
-					alert(result);
-					$("#writer").val('');
-					$("#contents").val('');
+				
+				$.ajax({
+					url : "./memoWrite",
+					type : "POST",
+					data : {writer:writer, contents:contents},
+					success : function(result) {
+						alert(result);
+						$("#writer").val('');
+						$("#contents").val('');
+						$("#result").html('');
+						curPage=1;
+						getList();
+					}
+					
 				});
+				
+			});
+				
+			//	$.post("./memoWrite",{writer:writer, contents:contents},function(result) {
+			//		alert(result);
+			//		$("#writer").val('');
+			//		$("#contents").val('');
+			//	});
 			//--------------------------------------------
 			
-			getList();
-			
-			});
 			
 			//--------------------------------------------
 		
