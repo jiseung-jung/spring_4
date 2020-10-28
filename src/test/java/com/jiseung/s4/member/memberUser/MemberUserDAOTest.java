@@ -10,7 +10,7 @@ import com.jiseung.s4.member.MemberDTO;
 
 public class MemberUserDAOTest extends MyTestCase{
 	
-	@Autowired
+	//@Autowired
 	private MemberUserDAO memberUserDAO;
 
 	//@Test
@@ -23,7 +23,7 @@ public class MemberUserDAOTest extends MyTestCase{
 		assertNotNull(memberDTO);
 	}
 	
-	@Test
+	//@Test
 	public void getMemberIdCheckTest()throws Exception{
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setId("dsfdsfsdf");

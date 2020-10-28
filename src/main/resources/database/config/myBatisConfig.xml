@@ -13,6 +13,7 @@
   	<typeAlias type="com.jiseung.s4.member.MemberDTO" alias="MemberDTO"/>
   	<typeAlias type="com.jiseung.s4.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>
   	<typeAlias type="com.jiseung.s4.board.memo.MemoDTO" alias="MemoDTO"/>
+  	<typeAlias type="com.jiseung.s4.member.memberFile.MemberFileDTO" alias="MemberFileDTO"/>
   	<typeAlias type="java.lang.Long" alias="Long"/>
   </typeAliases>
   </configuration>

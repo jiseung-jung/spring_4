@@ -13,7 +13,7 @@ import com.jiseung.s4.util.Pager;
 
 public class NoticeDAOTest extends MyTestCase {
 	
-	@Autowired
+	//@Autowired
 	private NoticeDAO noticeDAO;
 	
 	//@Test
@@ -27,7 +27,7 @@ public class NoticeDAOTest extends MyTestCase {
 		assertEquals(1,result);
 	}
 	
-	@Test
+	//@Test
 	public void getListTest() throws Exception{
 		Pager pager = new Pager();
 		pager.makeRow();

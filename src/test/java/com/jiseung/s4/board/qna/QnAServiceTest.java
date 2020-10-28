@@ -13,10 +13,10 @@ import com.jiseung.s4.util.Pager;
 
 public class QnAServiceTest extends MyTestCase {
 	
-	@Autowired
+	//@Autowired
 	private QnAService qnaService;
 	
-	@Test
+	//@Test
 	public void getListTest() throws Exception{
 		Pager pager = new Pager();
 		List<BoardDTO> ar = qnaService.getList(pager);
