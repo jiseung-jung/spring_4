@@ -53,20 +53,21 @@ public class MemberUserService implements MemberService {
 		
 		// HDD 어느 폴더에 어떤 이름으로 저장할거냐
 		// 저장할 폴더 경로
-		
+		String filename ="";
 		String path = session.getServletContext().getRealPath("/resources/upload/member");
-		String filename = filesaver.save(photo, session, path);
-		
+
 		//memberFile Insert
+		
+		int result = memberUserDAO.setMemberJoin(memberDTO);
+		
+		if(photo.getSize() != 0) {
+		filename = filesaver.save(photo, session, path);
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		memberFileDTO.setId(memberDTO.getId());
 		memberFileDTO.setFilename(filename);
 		memberFileDTO.setOriname(photo.getOriginalFilename());
-		
-		
-		int result = memberUserDAO.setMemberJoin(memberDTO);
 		result = memberFileDAO.setInsert(memberFileDTO);
-		
+		}
 		
 		return  result; 
 		
@@ -110,6 +111,11 @@ public class MemberUserService implements MemberService {
 		// TODO Auto-generated method stub
 		return memberUserDAO.getMemberIdCheck(memberDTO);
 	}
+	
+	
+	public MemberFileDTO getOne(MemberDTO memberDTO) throws Exception{
+		return memberFileDAO.getOne(memberDTO);
+	} 
 	
 	
 	

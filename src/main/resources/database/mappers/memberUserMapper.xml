@@ -17,11 +17,18 @@
     	</delete>
     	
     	<insert id="setMemberJoin" parameterType="MemberDTO">
-    		insert into member values(member_seq.nextval, #{id}, #{pw}, #{name}, #{email})
+    		insert into member values(member2_seq.nextval, #{id}, #{pw}, #{name}, #{email})
     	</insert>
     	
     	<select id="getMemberIdCheck" resultType="MemberUserDTO" parameterType="MemberUserDTO">
     		select id from member where id=#{id}
+    	</select>
+    	
+    	<select id="getMemberLogin" parameterType="MemberDTO" resultType="MemberDTO">
+    		select M.*, F.*
+			from member M inner join memberfile F
+			on (M.id=F.id)
+			where M.id = #{id} and M.pw = #{pw}
     	</select>
     	
     </mapper>

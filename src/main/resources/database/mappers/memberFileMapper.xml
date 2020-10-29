@@ -5,7 +5,11 @@
     
     <mapper namespace="com.jiseung.s4.member.memberFile.MemberFileDAO">
     	<insert id="setInsert" parameterType="MemberFileDTO">
-    		insert into memberFile values(member_seq.nextval, #{id}, #{filename}, #{oriname})
+    		insert into memberFile values(member2_seq.nextval, #{id}, #{filename}, #{oriname})
     	</insert>
+    	
+    	<select id="getOne" parameterType="MemberDTO">
+    		select * from memberFile where id=#{id}
+    	</select>
     
     </mapper>

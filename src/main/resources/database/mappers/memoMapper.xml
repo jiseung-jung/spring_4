@@ -46,4 +46,5 @@
     	<delete id="setDelete" parameterType="MemoDTO">
     		delete memo where num=#{num}
     	</delete>
+   
     </mapper>
